@@ -7,7 +7,7 @@ then
   then
     ELEMENT=$($PSQL "SELECT atomic_number, symbol, name, type, atomic_mass, melting_point_celsius, boiling_point_celsius FROM elements FULL JOIN properties USING(atomic_number) FULL JOIN types USING(type_id) WHERE atomic_number = $1;")
   # check if input is a letter
-  elif [[ $(echo $1 | wc -m) < 3 ]]
+  elif [[ $(echo $1 | wc -c) < 4 ]]
   then
     ELEMENT=$($PSQL "SELECT atomic_number, symbol, name, type, atomic_mass, melting_point_celsius, boiling_point_celsius FROM elements FULL JOIN properties USING(atomic_number) FULL JOIN types USING(type_id) WHERE symbol = '$1';")
   # check if input is a name
